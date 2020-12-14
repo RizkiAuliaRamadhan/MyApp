@@ -3,7 +3,7 @@ include "config/session.php";
 include "config/config.php";
 
 if($_SESSION['user'] == "user"){
-  header("Location: login.php");
+  header("Location: user.php");
 }
 
 ?>
