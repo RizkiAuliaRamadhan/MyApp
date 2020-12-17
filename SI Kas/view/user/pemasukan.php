@@ -3,10 +3,15 @@
 
     if(isset($_POST['submit'])){
         $bulan = date($_POST['bulan']);
+        $tahun = date($_POST['tahun']);
         if(!empty($bulan)){
-            $pemasukan = query("SELECT * FROM pemasukan WHERE MONTH(tanggal_pemasukan) = $bulan");
-        }else{
-            $pemasukan = query("SELECT * FROM pemasukan ORDER BY tanggal_pemasukan ASC");
+            if(!empty($tahun)){
+                $pemasukan = query("SELECT * FROM pemasukan WHERE MONTH(tanggal_pemasukan) = $bulan AND YEAR(tanggal_pemasukan) = $tahun");
+            }else{
+                $pemasukan = query("SELECT * FROM pemasukan WHERE MONTH(tanggal_pemasukan) = $bulan");
+            }  
+        }elseif(!empty($tahun)){
+            $pemasukan = query("SELECT * FROM pemasukan WHERE YEAR(tanggal_pemasukan) = $tahun");
         }
     }else{
         $pemasukan = query("SELECT * FROM pemasukan ORDER BY tanggal_pemasukan ASC");
@@ -18,7 +23,7 @@
     <form method="POST" action="" style="margin-left: 10px;">
        <label for="date1" style="font-size:13px;">Tampilkan transaksi bulan :</label>
        <select name="bulan" id="bulan">
-            <option value="">Semua</option>
+            <option value="">Semua(bln)</option>
             <option value="1">Januari</option>
             <option value="2">Februari</option>
             <option value="3">Maret</option>
@@ -31,6 +36,15 @@
             <option value="10">Oktober</option>
             <option value="11">November</option>
             <option value="12">Desember</option>
+       </select>
+       <select name="tahun" id="bulan">
+            <option value="">Semua(thn)</option>
+                <?php 
+                    $mulai = date('Y') - 2;
+                    for($i = $mulai; $i < $mulai + 10; $i++ ):
+                ?>
+            <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor ?>
        </select>
        <button type="submit" name="submit" class="button-primary">Tampilkan</button>
     </form>
