@@ -29,6 +29,7 @@ if($_SESSION['user'] == "user"){
         <li><a href="index.php?view=dashboard">Dasboard</a></li>
         <li><a href="index.php?view=pemasukan">Pemasukan</a></li>
         <li><a href="index.php?view=pengeluaran">Pengeluaran</a></li>
+        <li><a href="index.php?view=user">User</a></li>
         <li><a href="registrasi.php">Registrasi</a></li>
         <li><a href="logout.php">Logout</a></li>
       </ul>
@@ -62,6 +63,12 @@ if($_SESSION['user'] == "user"){
                     break;
                 case 'update_pengeluaran':
                     include 'view/admin/update_pengeluaran.php';
+                    break;
+                case 'user':
+                    include 'view/admin/user.php';
+                    break;
+                case 'hapus_user':
+                    include 'view/admin/hapus_user.php';
                     break;
                 
                 default:

@@ -96,3 +96,11 @@ function update_pengeluaran($data){
     return mysqli_affected_rows($connect);
 }
 
+//hapus data pemasukan
+function hapus_user($id){
+    global $connect;
+
+    mysqli_query($connect,"DELETE FROM user WHERE id = $id ");
+
+    return mysqli_affected_rows($connect);
+}

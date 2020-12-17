@@ -90,4 +90,6 @@ if(isset($_POST["register"])){
         <script>
             swal('user gagal ditambahkan!!','','error');
         </script>
-    <?php }} ?> 
+    <?php }
+}
+?> 

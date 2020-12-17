@@ -3,10 +3,15 @@
 
     if(isset($_POST['submit'])){
         $bulan = date($_POST['bulan']);
+        $tahun = date($_POST['tahun']);
         if(!empty($bulan)){
-            $pengeluaran = query("SELECT * FROM pengeluaran WHERE MONTH(tanggal_pengeluaran) = $bulan");
-        }else{
-            $pengeluaran = query("SELECT * FROM pengeluaran ORDER BY tanggal_pengeluaran ASC");
+            if(!empty($tahun)){
+                $pengeluaran = query("SELECT * FROM pengeluaran WHERE MONTH(tanggal_pengeluaran) = $bulan AND YEAR(tanggal_pengeluaran) = $tahun");
+            }else{
+                $pengeluaran = query("SELECT * FROM pengeluaran WHERE MONTH(tanggal_pengeluaran) = $bulan");
+            }  
+        }elseif(!empty($tahun)){
+            $pengeluaran = query("SELECT * FROM pengeluaran WHERE YEAR(tanggal_pengeluaran) = $tahun");
         }
     }else{
         $pengeluaran = query("SELECT * FROM pengeluaran ORDER BY tanggal_pengeluaran ASC");
@@ -33,6 +38,15 @@
             <option value="11">November</option>
             <option value="12">Desember</option>
        </select>
+       <select name="tahun" id="bulan">
+            <option value="">Semua(thn)</option>
+                <?php 
+                    $mulai = date('Y') - 2;
+                    for($i = $mulai; $i < $mulai + 10; $i++ ):
+                ?>
+            <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor ?>
+       </select>
        <button type="submit" name="submit" class="button-primary">Tampilkan</button>
     </form>
 
@@ -52,6 +66,15 @@
             <option value="10">Oktober</option>
             <option value="11">November</option>
             <option value="12">Desember</option>
+       </select>
+       <select name="tahun" id="bulan">
+            <option value="">Semua(thn)</option>
+                <?php 
+                    $mulai = date('Y') - 2;
+                    for($i = $mulai; $i < $mulai + 10; $i++ ):
+                ?>
+            <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor ?>
        </select>
        <button type="submit" name="cetak" class="button-primary">Cetak</button>
     </form>

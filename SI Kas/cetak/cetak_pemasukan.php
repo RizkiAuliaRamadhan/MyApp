@@ -6,10 +6,15 @@
 
     if(isset($_POST['cetak'])){
         $bulan = date($_POST['bulan']);
+        $tahun = date($_POST['tahun']);
         if(!empty($bulan)){
-            $pemasukan = query("SELECT * FROM pemasukan WHERE MONTH(tanggal_pemasukan) = $bulan");
-        }else{
-            $pemasukan = query("SELECT * FROM pemasukan ORDER BY tanggal_pemasukan ASC");
+            if(!empty($tahun)){
+                $pemasukan = query("SELECT * FROM pemasukan WHERE MONTH(tanggal_pemasukan) = $bulan AND YEAR(tanggal_pemasukan) = $tahun");
+            }else{
+                $pemasukan = query("SELECT * FROM pemasukan WHERE MONTH(tanggal_pemasukan) = $bulan");
+            }  
+        }elseif(!empty($tahun)){
+            $pemasukan = query("SELECT * FROM pemasukan WHERE YEAR(tanggal_pemasukan) = $tahun");
         }
     }else{
         $pemasukan = query("SELECT * FROM pemasukan ORDER BY tanggal_pemasukan ASC");
