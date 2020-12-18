@@ -2,6 +2,9 @@
 include "config/session.php";
 include "config/config.php";
 
+if($_SESSION['user'] == "admin"){
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

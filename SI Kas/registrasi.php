@@ -38,7 +38,12 @@
 
 <!-- Logic -->
 <?php 
+include "config/session.php";
 include "config/config.php";
+
+if($_SESSION['user'] == "user"){
+    header("Location: user.php");
+  }
 
 // function registrasi
 function registrasi($data){
