@@ -25,6 +25,10 @@
             </div>
         </form>
     </div>
+    <noscript>
+          Javascript anda tidak aktif,
+          Mohon diktifkan untuk bisa mengakses web ini.
+    </noscript>
 </body>
 </html>
 <!-- logic -->

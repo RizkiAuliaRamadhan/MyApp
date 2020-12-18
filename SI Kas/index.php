@@ -87,5 +87,9 @@ if($_SESSION['user'] == "user"){
     </div>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="src/formatRupiah.js"></script>
+    <noscript>
+          Javascript anda tidak aktif,
+          Mohon diktifkan untuk bisa mengakses web ini.
+    </noscript>
 </body>
 </html>
